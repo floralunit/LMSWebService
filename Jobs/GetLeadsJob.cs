@@ -29,11 +29,14 @@ namespace LMSWebService.Jobs
                 string url = context.JobDetail.JobDataMap.GetString("url");
                 string hostKey = context.JobDetail.JobDataMap.GetString("hostKey");
                 string token = _configuration["ApiTokens:" + hostKey];
+                httpClient.DefaultRequestHeaders.Host = url;
+
                 using (var scope = serviceScopeFactory.CreateScope())
                 {
                     var apiservice = scope.ServiceProvider.GetService<IRequestService>();
 
-                    await apiservice.GetLeadsAsync(url + "/api/request?status=1", token, httpClient);
+                    var result = await apiservice.GetLeadsAsync("https://" + url + "/api/lms/request?status=1", token, httpClient);
+                    Console.WriteLine(result?.Count());
                 }
             }
             catch (Exception ex)

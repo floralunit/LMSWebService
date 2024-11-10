@@ -19,7 +19,7 @@ namespace LMSWebService
 
             IJobDetail jobDetailOmoda = JobBuilder.Create<GetLeadsJob>()
                 .WithIdentity(jobKeyOmodaJaecoo)
-                .UsingJobData("url", "https://omoda-jaecoo.autocrm.ru")
+                .UsingJobData("url", "omoda-jaecoo.autocrm.ru")
                 .UsingJobData("hostKey", "omoda-jaecoo")
                 .Build();
             ITrigger triggerOmoda = TriggerBuilder.Create()
@@ -34,7 +34,7 @@ namespace LMSWebService
 
             IJobDetail jobDetailGAC = JobBuilder.Create<GetLeadsJob>()
                 .WithIdentity(jobKeyGAC)
-                .UsingJobData("url", "https://gac.autocrm.ru")
+                .UsingJobData("url", "gac.autocrm.ru")
                 .UsingJobData("hostKey", "gac")
                 .Build();
 
